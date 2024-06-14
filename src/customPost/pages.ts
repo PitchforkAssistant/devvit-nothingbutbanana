@@ -1,22 +1,18 @@
-import {ButtonsPage} from "./components/buttons.js";
-import {HelpPage} from "./components/help.js";
-import {HomePage} from "./components/home.js";
-import {CustomPostState} from "./state.js";
+import {BananaPage} from "./pages/bananaPage.js";
+import {PostState} from "./state/postState.js";
 
-export type PageName = "home" | "help" | "buttons";
+export type PageName = "banana";
 
 export type PageList = {
-    [key in PageName]: (state: CustomPostState) => JSX.Element;
+    [key in PageName]: (state: PostState) => JSX.Element;
 };
 
 export const Pages: PageList = {
-    home: HomePage,
-    help: HelpPage,
-    buttons: ButtonsPage,
+    banana: BananaPage,
 };
 
 export interface PageProps {
-    state: CustomPostState;
+    state: PostState;
 }
 
-export const Page = ({state}: PageProps) => Pages[state.currentPage](state);
+export const Page = ({state}: PageProps) => Pages[state.page](state);
